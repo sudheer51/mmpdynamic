@@ -40,7 +40,7 @@ public class PAT001_Tests {
 			String Adminurl="http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/";
 			launchBrowser(Adminurl);
 
-			boolean officeloginSuccessResult=officeLogin(ssn);
+			boolean officeloginSuccessResult=officeLogin(ssn,"Thomas_444","Edison_444");
 			sa.assertTrue(officeloginSuccessResult);
 			boolean logoutSuccess= logout("Logout");
 			sa.assertTrue(logoutSuccess);
@@ -57,6 +57,9 @@ public class PAT001_Tests {
 		}
 
 	}
+	/*
+	 * Adding Data to the HashMap
+	 */
 	public  HashMap<Integer,String[]> getAllUserData() throws InterruptedException
 	{
 		int unique_id = (int)(new Date().getTime() / 10000);
@@ -87,7 +90,9 @@ public class PAT001_Tests {
        */
 		return userMap;   
 	}
-
+/*
+ * Launch The browser with particular url
+ */
 	public  void launchBrowser(String url) 
 	{
 		System.setProperty("webdriver.chrome.driver","C:\\Users\\deepa\\Downloads\\chromedriver_win32_v79\\chromedriver.exe");
@@ -96,7 +101,9 @@ public class PAT001_Tests {
 		driver.manage().window().maximize();
 		driver.getTitle();
 	}
-
+/*
+ * Enter the Userdetails to register in the site MMP
+ */
 	public  String[] fillData(Map<Integer,String[]> allUsersMap,int index,Integer userKey)
 	{
 
@@ -130,7 +137,7 @@ public class PAT001_Tests {
 		options.selectByIndex(index);
 		
 		driver.findElement(By.id("answer")).sendKeys(userDetails[18]);
-		String[] data= new String[3];//userDetails[4];
+		String[] data= new String[3];
 		data[0]=userDetails[16];
 		data[1]=userDetails[15];
 		data[2]=userDetails[4];
@@ -146,7 +153,10 @@ public class PAT001_Tests {
 		driver.close();
 		return data;
 	}
-	public  boolean officeLogin(String ssnp) throws InterruptedException
+	/*
+	 * Login with Admin credentials
+	 */
+	public  boolean officeLogin(String ssnp,String adUname,String adPassword) throws InterruptedException
 	{
 		WebElement e=driver.findElement(By.xpath("//a[contains(text(),'Office Login')]"));
 		e.getText();
@@ -162,9 +172,9 @@ public class PAT001_Tests {
 		Thread.sleep(4000);
 
 		WebElement e1=driver.findElement(By.id("username"));
-		e1.sendKeys("Thomas_444");
+		e1.sendKeys(adUname);
 		Thread.sleep(4000);
-		driver.findElement(By.id("password")).sendKeys("Edison_444");
+		driver.findElement(By.id("password")).sendKeys(adPassword);
 		Thread.sleep(4000);
 		driver.findElement(By.name("admin")).click();
 		driver.findElement(By.xpath("//span[contains(text(), 'Users')] ")).click();
@@ -190,17 +200,14 @@ public class PAT001_Tests {
 
 		return result;
 	}
-
+/*
+ * Logout from the given module
+ */
 	public  boolean logout(String  moduleName) throws InterruptedException 
 	{
 		boolean result=false;
 		WebElement e=driver.findElement(By.xpath("//span[contains(text(),'"+moduleName+"')]"));
-		//WebDriverWait wait1 = new WebDriverWait(driver, 30);
-		//wait1.until(ExpectedConditions.elementToBeClickable(e));
-		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		//WebDriverWait wait3 = new WebDriverWait(driver, 30);
-		//wait3.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//span[contains(text(),'"+moduleName+"']")));
-
+		
 		System.out.println(e.getText());
 		e.click();
 		if (e!=null) {
@@ -211,7 +218,9 @@ public class PAT001_Tests {
 		return result;
 
 	}
-
+/*
+ * logging to MMP with details provided
+ */
 	public  boolean login(String userName,String password) 
 	{
 		Boolean result=false;
@@ -226,7 +235,9 @@ public class PAT001_Tests {
 		}
 		return result;
 	}
-
+/*
+ * Navigating specified module and Return True if navigated to correct module.
+ */
 	public  boolean navigateToAmodule(String  moduleName,String check) throws InterruptedException 
 	{
 		boolean result=false;
