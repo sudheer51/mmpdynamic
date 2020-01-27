@@ -13,7 +13,7 @@ public class SubModulePage {
 	public boolean navigateToAmodule(String moduleName)
 	{
 		driver.findElement(By.xpath("//span[contains(text(),'"+moduleName+"')]")).click();
-		boolean result = driver.findElement(By.xpath("//h3[@class='panel-title']")).getText().contains("Information");
+		boolean result = driver.findElement(By.xpath("//h3[@class='panel-title']")).getText().contains(moduleName);
 		return result;
 	}
 }
