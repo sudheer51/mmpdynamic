@@ -2,6 +2,7 @@ package org.iit.mmp.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 public class LoginPage {
 	WebDriver driver;
 	public LoginPage(WebDriver driver)
@@ -19,6 +20,18 @@ public class LoginPage {
 		boolean result = driver.findElement(By.tagName("h3")).getText().contains("ria1");
 		return result;
 	}	
+	/*
+	 * Logout from the given module
+	 */
+	public  boolean logout(String  moduleName) throws InterruptedException 
+	{
+			boolean result=false;
+			WebElement e=driver.findElement(By.xpath("//span[contains(text(),'"+moduleName+"')]"));
+			System.out.println(e.getText());
+			e.click();
+			result = driver.getTitle().contains("NAMTG");
+			return result;
+	}
 	
 }
 
