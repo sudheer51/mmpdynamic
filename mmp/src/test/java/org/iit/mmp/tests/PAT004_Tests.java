@@ -21,6 +21,7 @@ public class PAT004_Tests extends TestBaseClass  {
 	@Test
 	
 	/*
+	 * @author : Elizabeth J
 	 * validateScheduleAppointmenttab is used to Schedule a doctor appointment. 
 	 * the navigateToAmodule is to select the required link from the web page. 
 	 * the selectDoctor method is to select the required doctor. 

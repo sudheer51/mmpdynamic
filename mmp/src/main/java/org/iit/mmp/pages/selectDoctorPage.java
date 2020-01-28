@@ -34,7 +34,7 @@ public class selectDoctorPage {
 				System.out.println(s);
 				result = true;
 				
-				// Click on the Book Appointment button for the selected doctor
+				// Click on the Book Appointment button for the selected doctor!
 
 				driver.findElement(By.xpath("//td[" + (++i) + "]//button[1]")).click();
 				break;
