@@ -3,7 +3,7 @@ package org.iit.mmp.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+//
 public class NavigatePage {
 	WebDriver driver;
 	public NavigatePage(WebDriver driver)
