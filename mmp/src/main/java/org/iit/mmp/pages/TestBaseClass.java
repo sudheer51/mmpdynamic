@@ -10,37 +10,25 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestBaseClass {
 	//default,private,protected,public
-	protected WebDriver driver;
-	protected String url;
-	protected String adminurl;
-	@Parameters({"url","adminurl"})
+	protected WebDriver driver;		
+	@Parameters({"url"})
+	
 	@BeforeClass
-	public void intiateDriver(String url,String adminurl)
+	
+	public void launchBrowser(String url)
 	{
-
 		WebDriverManager.firefoxdriver().setup();
-	    driver = new FirefoxDriver();
+		driver = new FirefoxDriver();
 		driver.get(url);
 		String title = driver.getTitle();
 		System.out.println("Title :" +title);
-		this.url= url;
-		this.adminurl = adminurl;
 	}
-	public void launchPatientApp()
-	{
-		driver.get(url);
-	}
-	public void launchBrowser(String url)
-	{
-		driver.get(url);
-	}
-	public void launchAdminApp()
-	{
-		driver.get(adminurl);
-	}
+	
 	@AfterClass
 	public void closeBrowser()
 	{
 		driver.quit();
-	}
+	}		
+	
 }
+
